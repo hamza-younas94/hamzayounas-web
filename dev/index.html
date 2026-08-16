@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Hamza Younas — CV · Senior DevOps Engineer</title>
+<meta name="description" content="Curriculum Vitae of Hamza Younas — Senior DevOps Engineer & AWS Certified Solutions Architect. 8+ years in cloud infrastructure, CI/CD, Kubernetes and automation." />
+<meta name="author" content="Hamza Younas" />
+<link rel="canonical" href="https://hamzayounas.dev/" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230a0e14'/%3E%3Ctext x='10' y='44' font-family='monospace' font-size='30' font-weight='700' fill='%2339d0d8'%3E&gt;_%3C/text%3E%3C/svg%3E" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --bg:#0a0e14; --paper:#111a2b; --side:#0d1320; --line:#1e2a42; --line-2:#26344f;
+  --ink:#e6edf3; --muted:#8b98a5; --faint:#5b6675;
+  --green:#3fb950; --cyan:#39d0d8; --amber:#f0b429;
+  --grad:linear-gradient(120deg,var(--green),var(--cyan));
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+  --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --head:'Space Grotesk',var(--sans);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--cyan);text-decoration:none;transition:color .2s}
+a:hover{color:var(--green)}
+h1,h2,h3{font-family:var(--head);letter-spacing:-.01em;line-height:1.2}
+.accent{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+strong{color:#fff;font-weight:600}
+
+/* toolbar */
+.toolbar{max-width:1100px;margin:0 auto;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+.toolbar .home{font-family:var(--head);font-weight:700;display:flex;align-items:center;gap:.5rem}
+.toolbar .home .mk{font-family:var(--mono);color:var(--green)}
+.tb-actions{display:flex;gap:.6rem}
+.btn{font-family:var(--head);font-weight:600;font-size:.85rem;padding:.55rem 1rem;border-radius:9px;border:1px solid var(--line-2);cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:.4rem}
+.btn:hover{border-color:var(--cyan);transform:translateY(-1px)}
+.btn-solid{background:var(--grad);color:#04110b;border-color:transparent}
+
+/* page */
+.page{max-width:1100px;margin:0 auto 40px;background:var(--paper);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:grid;grid-template-columns:320px 1fr;box-shadow:0 30px 60px -30px rgba(0,0,0,.8)}
+.side{background:var(--side);border-right:1px solid var(--line);padding:28px 22px}
+.main{padding:32px 34px}
+
+/* sidebar */
+.photo{display:flex;justify-content:center;margin-bottom:18px}
+.photo img{width:130px;height:130px;border-radius:50%;object-fit:cover;border:3px solid var(--line-2);box-shadow:0 0 0 4px rgba(57,208,216,.12)}
+.side h3,.main h2{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);margin-bottom:.9rem;position:relative;padding-bottom:.4rem}
+.side h3::after,.main h2::after{content:"";position:absolute;left:0;bottom:0;width:28px;height:2px;background:var(--grad)}
+.side section{margin-bottom:26px}
+.kv{margin-bottom:12px}
+.kv .k{font-size:.72rem;color:var(--faint);text-transform:uppercase;letter-spacing:.06em;font-family:var(--mono)}
+.kv .v{color:var(--ink);font-size:.92rem;word-break:break-word}
+.kv .v a{word-break:break-word}
+
+.cert{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:6px}
+.cert .ct{font-family:var(--head);font-weight:700;font-size:.95rem}
+.cert .cs{color:var(--muted);font-size:.8rem;margin:.15rem 0 .5rem}
+.cert .cd{font-size:.78rem;color:var(--faint);font-family:var(--mono)}
+.cert a{font-size:.8rem;display:inline-block;margin-top:.5rem}
+
+.taglist{display:flex;flex-wrap:wrap;gap:.35rem}
+.taglist span{font-family:var(--mono);font-size:.73rem;color:var(--muted);background:var(--bg);border:1px solid var(--line);border-radius:7px;padding:.25rem .5rem}
+.taglist span.hot{color:var(--cyan);border-color:var(--line-2)}
+
+/* main */
+.hero-name{font-size:2.2rem;font-weight:700;margin-bottom:.2rem}
+.hero-role{font-family:var(--head);font-weight:600;color:var(--cyan);font-size:1.05rem;margin-bottom:1rem}
+.summary{color:var(--muted);margin-bottom:1.6rem}
+.main section{margin-bottom:1.8rem}
+
+.job{position:relative;padding-left:22px;margin-bottom:1.3rem;border-left:2px solid var(--line)}
+.job::before{content:"";position:absolute;left:-7px;top:4px;width:12px;height:12px;border-radius:50%;background:var(--bg);border:3px solid var(--cyan)}
+.job:last-child{margin-bottom:0}
+.job .jh{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:.3rem}
+.job .jt{font-family:var(--head);font-weight:700;font-size:1.05rem}
+.job .jw{font-family:var(--mono);font-size:.75rem;color:var(--cyan);white-space:nowrap}
+.job .jc{font-weight:600;color:var(--ink);margin:.1rem 0 .5rem;font-size:.92rem}
+.job .jc .loc{color:var(--faint);font-weight:400}
+.job ul{list-style:none;display:flex;flex-direction:column;gap:.35rem}
+.job li{color:var(--muted);font-size:.88rem;padding-left:1.1rem;position:relative}
+.job li::before{content:"▹";position:absolute;left:0;color:var(--green)}
+
+.edu-item .d{font-weight:600}
+.edu-item .s{color:var(--muted);font-size:.88rem}
+
+.ach{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+.ach .box{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:.9rem}
+.ach .box h4{font-family:var(--mono);font-size:.72rem;color:var(--cyan);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.5rem}
+.ach .box .taglist span{font-size:.7rem}
+
+.footer-note{max-width:1100px;margin:0 auto 40px;text-align:center;color:var(--faint);font-size:.82rem;font-family:var(--mono)}
+.footer-note a{color:var(--cyan)}
+
+@media (max-width:820px){
+  .page{grid-template-columns:1fr}
+  .side{border-right:0;border-bottom:1px solid var(--line)}
+  .ach{grid-template-columns:1fr}
+}
+
+/* ============ PRINT (clean light A4) ============ */
+@media print{
+  @page{margin:12mm}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body{background:#fff;color:#1e293b;font-size:11px}
+  .toolbar,.footer-note{display:none !important}
+  .accent{-webkit-text-fill-color:#0f766e;color:#0f766e}
+  .page{max-width:100%;margin:0;border:0;border-radius:0;box-shadow:none;background:#fff;grid-template-columns:250px 1fr}
+  .side{background:#f1f5f9;border-right:1px solid #e2e8f0;padding:16px}
+  .main{padding:16px 20px}
+  .side h3,.main h2{color:#0f766e}
+  .side h3::after,.main h2::after,.job .jt,.hero-name{background:none}
+  .hero-name{color:#0f172a;-webkit-text-fill-color:#0f172a}
+  .hero-role{color:#0f766e}
+  .summary,.job li,.kv .v,.edu-item .s,.side .cert .cs{color:#334155}
+  .kv .k,.job .jw,.side h3{color:#0f766e}
+  .cert,.taglist span,.job li,.ach .box,.taglist span.hot{background:#fff !important;border-color:#e2e8f0 !important;color:#334155 !important}
+  .taglist span{color:#334155 !important}
+  .job{border-left-color:#cbd5e1}
+  .job::before{border-color:#0f766e;background:#fff}
+  .job .jc,.job .jt{color:#0f172a}
+  .photo img{border-color:#cbd5e1;box-shadow:none}
+  a{color:#0f766e}
+}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <a class="home" href="https://hamzayounas.com"><span class="mk">&gt;_</span> hamza<span class="accent">younas</span>.com</a>
+  <div class="tb-actions">
+    <button class="btn" onclick="window.print()">🖨️ Print / Save PDF</button>
+    <a class="btn btn-solid" href="https://hamzayounas.com">View portfolio →</a>
+  </div>
+</div>
+
+<div class="page">
+  <!-- ===== SIDEBAR ===== -->
+  <aside class="side">
+    <div class="photo"><img src="hamza.jpeg" alt="Hamza Younas" /></div>
+
+    <section>
+      <h3>Contact</h3>
+      <div class="kv"><div class="k">Email</div><div class="v"><a href="mailto:hamza.younas94@gmail.com">hamza.younas94@gmail.com</a></div></div>
+      <div class="kv"><div class="k">Phone</div><div class="v"><a href="tel:+923462115115">+92 346 211 5115</a></div></div>
+      <div class="kv"><div class="k">WhatsApp</div><div class="v"><a href="https://wa.me/923462115115">+92 346 211 5115</a></div></div>
+      <div class="kv"><div class="k">Location</div><div class="v">Karachi, Pakistan</div></div>
+    </section>
+
+    <section>
+      <h3>Certification</h3>
+      <div class="cert">
+        <div class="ct">AWS Solutions Architect</div>
+        <div class="cs">Associate · Certified</div>
+        <div class="cd">Issued Apr 2025 · Expires Apr 2028</div>
+        <div class="cd">ID: 447ac4b2…83671</div>
+        <a href="https://cp.certmetrics.com/amazon/en/public/verify/credential/447ac4b2319e4b5f95cba9572db83671" target="_blank" rel="noopener">Verify certification →</a>
+      </div>
+    </section>
+
+    <section>
+      <h3>Core Technologies</h3>
+      <div class="taglist">
+        <span class="hot">AWS</span><span>ECS</span><span>RDS</span><span>S3</span><span>CloudFront</span>
+        <span>Route 53</span><span>SQS</span><span>SES</span><span class="hot">Docker</span><span class="hot">Kubernetes</span>
+        <span class="hot">Terraform</span><span>Ansible</span><span>Jenkins</span><span>GitLab CI</span><span>Azure DevOps</span>
+        <span>CodePipeline</span><span>CodeDeploy</span><span>CodeBuild</span><span>Prometheus</span><span>Grafana</span>
+        <span>Splunk</span><span>Linux</span><span>GCP</span><span>Laravel</span><span>PHP</span>
+      </div>
+    </section>
+
+    <section>
+      <h3>Education</h3>
+      <div class="edu-item">
+        <div class="d">B.Sc. Computer Science</div>
+        <div class="s">Dadabhoy Institute of Higher Education, 2016</div>
+      </div>
+    </section>
+
+    <section>
+      <h3>Social &amp; Availability</h3>
+      <div class="kv"><div class="k">LinkedIn</div><div class="v"><a href="https://www.linkedin.com/in/hamza-younas" target="_blank" rel="noopener">linkedin.com/in/hamza-younas</a></div></div>
+      <div class="kv"><div class="k">GitHub</div><div class="v"><a href="https://github.com/hamza-younas94" target="_blank" rel="noopener">github.com/hamza-younas94</a></div></div>
+      <div class="kv"><div class="k">Availability</div><div class="v">Remote worldwide</div></div>
+      <div class="kv"><div class="k">Timezone</div><div class="v">PKT (UTC+5) · flexible</div></div>
+    </section>
+  </aside>
+
+  <!-- ===== MAIN ===== -->
+  <main class="main">
+    <h1 class="hero-name">Hamza Younas</h1>
+    <div class="hero-role">Senior DevOps Engineer · AWS Certified Solutions Architect</div>
+    <p class="summary">AWS Certified Solutions Architect with 8+ years in DevOps, cloud infrastructure and automation. Expert across AWS (ECS, RDS, S3, CloudFront, SQS, Route 53, the CodeSuite, SES), Docker containerisation, Kubernetes orchestration and CI/CD (Jenkins, Azure DevOps, GitLab) with a proven record running high-availability systems for 100K+ daily users. Specialised in cloud cost optimisation (30% reduction), multi-cloud migration (AWS→GCP), and observability with Prometheus, Grafana and Splunk. Currently managing AWS infrastructure for DealCart.io with a focus on scalability, reliability and cost efficiency.</p>
+
+    <section>
+      <h2>Professional Experience</h2>
+
+      <div class="job">
+        <div class="jh"><div class="jt">Senior DevOps Engineer</div><div class="jw">Dec 2022 – Present</div></div>
+        <div class="jc">DealCart.io <span class="loc">· Remote</span></div>
+        <ul>
+          <li>Manage AWS infrastructure (ECS, RDS, S3, CloudFront, SQS, Route 53) for a fast-growing grocery startup.</li>
+          <li>Architected scalable microservices on AWS ECS with Docker containers for performance and scalability.</li>
+          <li>Built comprehensive CI/CD across Jenkins, CodePipeline, CodeBuild, CodeDeploy and Azure DevOps.</li>
+          <li>Cut monthly cloud spend 30% via rightsizing, reserved instances and automated scaling policies.</li>
+          <li>Sustained 99.9% uptime for 100K+ daily active users using auto-scaling groups and load balancers.</li>
+          <li>Provisioned infrastructure as code with Terraform; automated config and deployment with Ansible.</li>
+          <li>Led AWS→GCP migration; ran Kubernetes clusters; centralised logging/security with Splunk.</li>
+          <li>Configured AWS SES for transactional and campaign email at 99.5% delivery with bounce management.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="jh"><div class="jt">Senior DevOps Engineer</div><div class="jw">Jul 2018 – Dec 2022</div></div>
+        <div class="jc">OPTIMYSE</div>
+        <ul>
+          <li>Managed AWS (EC2, RDS, ECS, S3) for enterprise applications serving 50K+ concurrent users.</li>
+          <li>Built and maintained Docker-based microservices for better performance and resource use.</li>
+          <li>Implemented CI/CD with Jenkins, GitLab Runner/CI and Azure DevOps; IaC via Terraform + Ansible.</li>
+          <li>Reduced cloud costs 25% through rightsizing, spot instances and off-hours scheduling.</li>
+          <li>Ran API management with Kong + Konga; owned dev, integration and production environments.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="jh"><div class="jt">Assistant Manager, DevOps</div><div class="jw">Oct 2014 – Jun 2018</div></div>
+        <div class="jc">Nexus Corporation</div>
+        <ul>
+          <li>Scaled Linux servers and automated routine operations; supported 100+ concurrent users.</li>
+          <li>Delivered CI/CD with Jenkins and Docker for faster deployments.</li>
+          <li>Developed and maintained Laravel applications with MySQL; managed DigitalOcean infrastructure.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="jh"><div class="jt">Web Developer</div><div class="jw">Mar 2014 – Nov 2014</div></div>
+        <div class="jc">Badar Expo</div>
+        <ul>
+          <li>Developed and maintained e-commerce platforms with modern web technologies.</li>
+          <li>Contributed to UI/UX for interactive, user-friendly websites; provided technical support.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>Key Achievements</h2>
+      <div class="ach">
+        <div class="box"><h4>AWS &amp; Infrastructure</h4><div class="taglist"><span>ECS</span><span>RDS</span><span>S3</span><span>CloudFront</span><span>Route 53</span><span>SQS</span><span>SES</span><span>CodePipeline</span><span>CodeDeploy</span><span>CodeBuild</span></div></div>
+        <div class="box"><h4>Containers &amp; Orchestration</h4><div class="taglist"><span>Docker</span><span>Kubernetes</span><span>AWS ECS</span><span>Microservices</span><span>Auto Scaling</span></div></div>
+        <div class="box"><h4>CI/CD &amp; DevOps</h4><div class="taglist"><span>Jenkins</span><span>Azure DevOps</span><span>GitLab Runner</span><span>GitLab CI</span><span>GitHub Actions</span></div></div>
+        <div class="box"><h4>Infrastructure as Code</h4><div class="taglist"><span>Terraform</span><span>Ansible</span><span>Config Mgmt</span><span>Automation</span></div></div>
+        <div class="box"><h4>Monitoring &amp; Logging</h4><div class="taglist"><span>Prometheus</span><span>Grafana</span><span>CloudWatch</span><span>Splunk</span></div></div>
+        <div class="box"><h4>Cloud &amp; Optimisation</h4><div class="taglist"><span>AWS</span><span>GCP</span><span>Multi-Cloud</span><span>Cost Optimisation</span><span>High Traffic</span></div></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<p class="footer-note">© <span id="yr"></span> Hamza Younas · <a href="https://hamzayounas.com">hamzayounas.com</a> · <a href="privacy-policy.html">Privacy</a> · <a href="terms-of-service.html">Terms</a></p>
+<script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
+</body>
+</html>

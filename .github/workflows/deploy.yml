@@ -1,0 +1,61 @@
+name: Deploy to production
+
+# Deploys hamzayounas.com (com/) and hamzayounas.dev (dev/) on every push to main.
+# Live host is Namecheap cPanel (user pakmfguk). Password SSH is used because keys
+# are not authorized on this account. Credentials live in repo Secrets.
+#
+# Strategy: keep a bare-ish git checkout of this repo in ~/repos/hamzayounas-web on the
+# server, hard-reset it to origin/main, then rsync the two site folders into their
+# docroots. cgi-bin and .well-known are preserved so SSL/ACME and cPanel keep working.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy over SSH
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          port: ${{ secrets.SSH_PORT }}
+          command_timeout: 8m
+          script: |
+            set -e
+            REPO="$HOME/repos/hamzayounas-web"
+            COM="$HOME/hamzayounas.com"
+            DEV="$HOME/hamzayounas.dev"
+
+            # 1. sync the repo checkout on the server
+            if [ ! -d "$REPO/.git" ]; then
+              mkdir -p "$HOME/repos"
+              git clone --depth 1 https://github.com/hamza-younas94/hamzayounas-web.git "$REPO"
+            fi
+            cd "$REPO"
+            git fetch --depth 1 origin main
+            git reset --hard origin/main
+
+            # 2. timestamped backups of both docroots (keep 5 most recent each)
+            mkdir -p "$HOME/backups"
+            ts=$(date +%Y%m%d-%H%M%S)
+            [ -d "$COM" ] && tar czf "$HOME/backups/hy-com-$ts.tgz" -C "$COM" . 2>/dev/null || true
+            [ -d "$DEV" ] && tar czf "$HOME/backups/hy-dev-$ts.tgz" -C "$DEV" . 2>/dev/null || true
+            ls -1t "$HOME"/backups/hy-com-*.tgz 2>/dev/null | tail -n +6 | xargs -r rm -f
+            ls -1t "$HOME"/backups/hy-dev-*.tgz 2>/dev/null | tail -n +6 | xargs -r rm -f
+
+            # 3. publish (preserve cgi-bin + .well-known so SSL/cPanel stay intact)
+            mkdir -p "$COM" "$DEV"
+            rsync -a --delete --exclude 'cgi-bin' --exclude '.well-known' "$REPO/com/" "$COM/"
+            rsync -a --delete --exclude 'cgi-bin' --exclude '.well-known' "$REPO/dev/" "$DEV/"
+
+            echo "Deployed HEAD: $(git log --oneline -1)"
+            echo "com/ -> $COM ; dev/ -> $DEV"
