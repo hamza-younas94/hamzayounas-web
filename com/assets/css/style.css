@@ -205,11 +205,13 @@ main,.footer,.nav{position:relative;z-index:2}
 .console-top span{width:10px;height:10px;border-radius:50%;background:#ff5f57}
 .console-top span:nth-child(2){background:#febc2e}.console-top span:nth-child(3){background:#28c840}
 .console-top b{margin-left:auto;font-family:var(--mono);font-size:.72rem;color:var(--faint);font-weight:500}
-.pipeline-console ol{list-style:none;padding:.8rem 1rem;font-family:var(--mono);font-size:.82rem;color:var(--faint)}
-.pipeline-console li{padding:.22rem 0;transition:color .25s ease,transform .25s ease}
-.pipeline-console li::before{content:"$ ";color:var(--green)}
+#deployLog{list-style:none !important;counter-reset:none;margin:0;padding:.85rem 1rem;font-family:var(--mono);font-size:.82rem;color:var(--faint);text-align:left}
+#deployLog li{display:flex;align-items:center;gap:.65rem;padding:.24rem 0;transition:color .25s ease,transform .25s ease}
+#deployLog li::marker{content:""}
+#deployLog li::before{content:"$";display:inline-grid;place-items:center;width:1.1rem;flex:0 0 1.1rem;color:var(--green)}
 .pipeline-console li.active{color:var(--cyan);transform:translateX(4px)}
 .pipeline-console li.done{color:var(--green)}
+.pipeline-console li.done::before{content:"✓"}
 
 /* ============ ZIG-ZAG ============ */
 .zig-row{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(2rem,5vw,4rem);align-items:center}
