@@ -72,9 +72,9 @@
   if ('IntersectionObserver' in window && !reduce) {
     var ro = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
-        if (e.isIntersecting) { e.target.classList.add('in'); ro.unobserve(e.target); }
+        e.target.classList.toggle('in', e.isIntersecting);
       });
-    }, { threshold: 0.15 });
+    }, { threshold: 0.18, rootMargin: '0px 0px -8% 0px' });
     reveals.forEach(function (el, idx) {
       // stagger cards inside a grid
       if (el.parentElement && (el.parentElement.classList.contains('skill-grid') ||
@@ -124,28 +124,43 @@
   var deployLog = document.getElementById('deployLog');
   var logItems = deployLog ? deployLog.querySelectorAll('li') : [];
   var labels = ['building…', 'testing…', 'deploying…', 'monitoring…', 'deployed ✓'];
+  var pipelineTimer = null;
   function setDeployLog(activeIdx) {
     logItems.forEach(function (item, idx) {
       item.classList.toggle('active', idx === activeIdx);
       item.classList.toggle('done', idx < activeIdx);
     });
   }
+  function resetPipeline() {
+    if (pipelineTimer) {
+      clearInterval(pipelineTimer);
+      pipelineTimer = null;
+    }
+    if (packet) {
+      packet.classList.remove('run');
+      packet.style.left = '0%';
+    }
+    stages.forEach(function (s) { s.classList.remove('active', 'done'); });
+    setDeployLog(-1);
+    if (status) status.innerHTML = '<span class="run">●</span> waiting for commit…';
+  }
   function runPipeline() {
     if (!packet || !stages.length) return;
+    resetPipeline();
     var n = stages.length;
-    stages.forEach(function (s) { s.classList.remove('active', 'done'); });
     setDeployLog(0);
     packet.classList.add('run');
     var idx = 0;
     stages[0].classList.add('active');
     packet.style.left = '0%';
     if (status) status.innerHTML = '<span class="run">●</span> commit received…';
-    var timer = setInterval(function () {
+    pipelineTimer = setInterval(function () {
       stages[idx].classList.remove('active');
       stages[idx].classList.add('done');
       idx++;
       if (idx >= n) {
-        clearInterval(timer);
+        clearInterval(pipelineTimer);
+        pipelineTimer = null;
         setDeployLog(n);
         if (status) status.innerHTML = '<span class="ok">●</span> deployed to production · healthy';
         return;
@@ -164,9 +179,13 @@
     } else if ('IntersectionObserver' in window) {
       var po = new IntersectionObserver(function (entries) {
         entries.forEach(function (e) {
-          if (e.isIntersecting) { runPipeline(); po.unobserve(e.target); }
+          if (e.isIntersecting) {
+            runPipeline();
+          } else {
+            resetPipeline();
+          }
         });
-      }, { threshold: 0.5 });
+      }, { threshold: 0.45, rootMargin: '0px 0px -8% 0px' });
       po.observe(track);
     }
   }
