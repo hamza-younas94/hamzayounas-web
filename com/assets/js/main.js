@@ -92,8 +92,8 @@
     var target = parseFloat(el.getAttribute('data-count'));
     var suffix = el.getAttribute('data-suffix') || '';
     var decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
-    if (reduce) { el.textContent = target.toFixed(decimals) + suffix; return; }
-    var dur = 1400, start = null;
+    if (reduce || el.closest(".hero-metrics")) { el.textContent = target.toFixed(decimals) + suffix; return; }
+    var dur = 800, start = null;
     function step(ts) {
       if (!start) start = ts;
       var p = Math.min((ts - start) / dur, 1);
