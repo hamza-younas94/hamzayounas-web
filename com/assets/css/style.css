@@ -319,7 +319,7 @@ main,.footer,.nav{position:relative;z-index:2}
 .reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}
 
 /* ============ RESPONSIVE ============ */
-@media (max-width:900px){
+@media (max-width:1024px){
   .nav-links{display:none}
   .nav-cta{display:none}
   .nav-toggle{display:flex;margin-left:auto}
