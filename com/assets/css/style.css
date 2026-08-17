@@ -341,7 +341,7 @@ main,.footer,.nav{position:relative;z-index:2}
   body,main,.hero,.section{max-width:100vw;overflow-x:hidden}
   .hero-inner,.hero-copy,.terminal,.hero-metrics{width:100%;max-width:100%}
   .hero-copy{max-width:350px}
-  .hero-metrics{grid-template-columns:1fr}
+  .hero-metrics{grid-template-columns:repeat(2,minmax(0,1fr));gap:.65rem;width:calc(100vw - 40px);max-width:calc(100vw - 40px)}
   .hero-actions .btn{width:100%}
   .hero{padding-left:20px;padding-right:20px}
   .hero-role{font-size:1rem;overflow-wrap:anywhere}
@@ -349,7 +349,9 @@ main,.footer,.nav{position:relative;z-index:2}
   .hero-title{font-size:2.45rem}
   .terminal-body{font-size:.78rem;overflow-wrap:anywhere}
   .tb-title{max-width:42%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .metric-card{padding:1rem}
+  .metric-card{padding:.9rem .85rem;min-height:108px;width:100%;max-width:100%}
+  .metric-num{font-size:clamp(1.8rem,10vw,2.25rem)}
+  .metric-label{font-size:.78rem}
   .command-cloud{display:none}
   .skill-orbit{display:none}
   .mini-proof{grid-template-columns:1fr}
