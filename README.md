@@ -4,7 +4,7 @@ Two static sites sharing one dark DevOps brand.
 
 | Folder | Domain | What |
 |---|---|---|
-| `com/` | hamzayounas.com | Animated portfolio (hero terminal, CI/CD pipeline animation, zig-zag sections, skills, timeline, contact form) |
+| `com/` | hamzayounas.com | Animated portfolio (hero terminal, floating command chips, selected work, animated proof meters, CI/CD pipeline + deploy log, animated skills, timeline, contact form, SEO landing pages) |
 | `dev/` | hamzayounas.dev | CV — redesigned to match brand, clean print/PDF mode |
 
 ## Stack
@@ -14,6 +14,11 @@ Pure static HTML/CSS/vanilla JS. No framework, no build step. One PHP file for t
 ```
 com/
 ├── index.html
+├── aws-devops-engineer-karachi.html
+├── ci-cd-automation.html
+├── cloud-infrastructure.html
+├── Hamza-Younas-One-Page-Resume.html
+├── Hamza-Younas-One-Page-Resume.pdf
 ├── contact.php              # mail() handler, honeypot spam guard, JSON responses
 ├── Hamza-Younas-CV.pdf      # generated from dev/ print mode; linked by "Download CV"
 └── assets/
@@ -32,7 +37,7 @@ dev/
 ```
 
 ## Motion / a11y
-- All motion is CSS + IntersectionObserver. Honors `prefers-reduced-motion` (disables canvas, shows everything static).
+- All motion is CSS + IntersectionObserver/vanilla JS. Honors `prefers-reduced-motion` (disables canvas, shows everything static).
 - Fully responsive; nav collapses to hamburger < 900px.
 
 ## Contact form (SMTP)
@@ -52,8 +57,9 @@ To rotate: `uapi Email passwd_pop email=noreply domain=hamzayounas.dev password=
 
 ## SEO
 - `robots.txt` + `sitemap.xml` per site. Both domains are behind Cloudflare, which appends a managed content-signals block to robots.txt (allows search engines, blocks AI-training crawlers).
-- 1200×630 OG/Twitter share image per site (`com/assets/img/og.jpg`, `dev/og.jpg`), generated from an HTML template via headless Chrome.
+- 1200×630 OG/Twitter share image per site (`com/assets/img/og.png`, `dev/og.jpg`), generated from an HTML template via headless Chrome.
 - Full OG + Twitter Card + JSON-LD Person schema on both pages.
+- Focused `com/` landing pages: AWS DevOps Engineer in Karachi, CI/CD Automation, and Cloud Infrastructure.
 - **Manual step:** add both sitemaps in Google Search Console.
 
 ## Regenerate the CV PDF

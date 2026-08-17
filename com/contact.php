@@ -39,6 +39,10 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     http_response_code(422);
     respond(false, ['error' => 'That email address looks invalid.']);
 }
+if (strlen($message) < 20) {
+    http_response_code(422);
+    respond(false, ['error' => 'Please add a little more detail so I can reply usefully.']);
+}
 if (strlen($message) > 5000 || strlen($name) > 200) {
     http_response_code(422);
     respond(false, ['error' => 'That message is a little too long.']);
@@ -47,6 +51,29 @@ if (strlen($message) > 5000 || strlen($name) > 200) {
 // strip header-injection attempts
 $name  = preg_replace('/[\r\n]+/', ' ', $name);
 $email = preg_replace('/[\r\n]+/', ' ', $email);
+
+// ---- lightweight rate limit: 3 messages / 10 minutes per IP ----
+$ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
+$rateKey = hash('sha256', 'hy-contact|' . $ip);
+$rateFile = rtrim(sys_get_temp_dir(), DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . $rateKey . '.json';
+$now = time();
+$window = 600;
+$maxAttempts = 3;
+$attempts = [];
+if (is_readable($rateFile)) {
+    $decoded = json_decode((string) file_get_contents($rateFile), true);
+    if (is_array($decoded)) {
+        $attempts = array_values(array_filter($decoded, function ($ts) use ($now, $window) {
+            return is_int($ts) && ($now - $ts) < $window;
+        }));
+    }
+}
+if (count($attempts) >= $maxAttempts) {
+    http_response_code(429);
+    respond(false, ['error' => 'Too many messages in a short time. Please email me directly if it is urgent.']);
+}
+$attempts[] = $now;
+@file_put_contents($rateFile, json_encode($attempts), LOCK_EX);
 
 // ---- load SMTP config (above web root; fall back gracefully) ----
 $cfgPath = dirname(__DIR__) . '/.hy-secrets/smtp.php';
@@ -58,7 +85,7 @@ $subject = 'New message from hamzayounas.com';
 $bodyText  = "New contact form submission from hamzayounas.com\n\n";
 $bodyText .= "Name:  $name\n";
 $bodyText .= "Email: $email\n";
-$bodyText .= "IP:    " . ($_SERVER['REMOTE_ADDR'] ?? 'unknown') . "\n";
+$bodyText .= "IP:    " . $ip . "\n";
 $bodyText .= "Time:  " . date('Y-m-d H:i:s') . "\n\n";
 $bodyText .= "Message:\n$message\n";
 

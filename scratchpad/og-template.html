@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{width:1200px;height:630px;background:#0a0e14;color:#e6edf3;font-family:Inter,Arial,sans-serif;overflow:hidden}
+.frame{position:relative;width:1200px;height:630px;padding:58px 70px;background:
+  linear-gradient(90deg,rgba(57,208,216,.08),transparent 45%),
+  linear-gradient(180deg,rgba(63,185,80,.08),transparent 55%),
+  #0a0e14}
+.grid{position:absolute;inset:0;background-image:linear-gradient(rgba(57,208,216,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(57,208,216,.055) 1px,transparent 1px);background-size:44px 44px}
+.content{position:relative;z-index:1;width:760px}
+.mark{font-family:Menlo,monospace;color:#3fb950;font-size:30px;font-weight:700;margin-bottom:44px}
+.kicker{font-family:Menlo,monospace;color:#39d0d8;font-size:24px;margin-bottom:18px}
+h1{font-size:76px;line-height:1.02;letter-spacing:0;margin-bottom:20px}
+.role{font-size:32px;color:#39d0d8;font-weight:700;margin-bottom:26px}
+.summary{font-size:27px;line-height:1.35;color:#aab6c3}
+.chips{position:absolute;left:70px;bottom:58px;display:flex;gap:12px}
+.chips span{font-family:Menlo,monospace;font-size:20px;border:1px solid #26344f;border-radius:8px;padding:10px 14px;background:#111a2b;color:#3fb950}
+.card{position:absolute;right:70px;top:90px;width:300px;border:1px solid #26344f;border-radius:8px;background:#111a2b;padding:28px}
+.card b{display:block;font-size:54px;line-height:1;color:#3fb950;margin-bottom:8px}
+.card span{display:block;color:#aab6c3;font-size:22px;margin-bottom:26px}
+.card span:last-child{margin-bottom:0}
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="grid"></div>
+  <div class="content">
+    <div class="mark">&gt;_ hamzayounas.com</div>
+    <div class="kicker">Senior DevOps Engineer</div>
+    <h1>Hamza Younas</h1>
+    <div class="role">AWS · CI/CD · Platform Automation</div>
+    <p class="summary">Reliable cloud infrastructure, deployment pipelines, observability and cost optimisation for production teams.</p>
+  </div>
+  <div class="card">
+    <b>100K+</b><span>daily users served</span>
+    <b>99.9%</b><span>uptime</span>
+    <b>30%</b><span>cloud cost reduced</span>
+  </div>
+  <div class="chips"><span>AWS Certified</span><span>Kubernetes</span><span>Terraform</span><span>Remote worldwide</span></div>
+</div>
+</body>
+</html>

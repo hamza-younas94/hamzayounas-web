@@ -121,11 +121,20 @@
   var packet = document.getElementById('plPacket');
   var status = document.getElementById('plStatus');
   var stages = track ? track.querySelectorAll('.pl-stage') : [];
+  var deployLog = document.getElementById('deployLog');
+  var logItems = deployLog ? deployLog.querySelectorAll('li') : [];
   var labels = ['building…', 'testing…', 'deploying…', 'monitoring…', 'deployed ✓'];
+  function setDeployLog(activeIdx) {
+    logItems.forEach(function (item, idx) {
+      item.classList.toggle('active', idx === activeIdx);
+      item.classList.toggle('done', idx < activeIdx);
+    });
+  }
   function runPipeline() {
     if (!packet || !stages.length) return;
     var n = stages.length;
     stages.forEach(function (s) { s.classList.remove('active', 'done'); });
+    setDeployLog(0);
     packet.classList.add('run');
     var idx = 0;
     stages[0].classList.add('active');
@@ -137,10 +146,12 @@
       idx++;
       if (idx >= n) {
         clearInterval(timer);
+        setDeployLog(n);
         if (status) status.innerHTML = '<span class="ok">●</span> deployed to production · healthy';
         return;
       }
       stages[idx].classList.add('active');
+      setDeployLog(idx);
       packet.style.left = (idx / (n - 1)) * 100 + '%';
       if (status) status.innerHTML = '<span class="run">●</span> ' + labels[idx - 1];
     }, 1000);
@@ -148,6 +159,7 @@
   if (track) {
     if (reduce) {
       stages.forEach(function (s) { s.classList.add('done'); });
+      setDeployLog(logItems.length);
       if (status) status.innerHTML = '<span class="ok">●</span> deployed to production · healthy';
     } else if ('IntersectionObserver' in window) {
       var po = new IntersectionObserver(function (entries) {
@@ -159,38 +171,64 @@
     }
   }
 
+  /* ---------- proof meter animation ---------- */
+  document.querySelectorAll('.proof-meter').forEach(function (meter) {
+    meter.style.setProperty('--meter', (meter.getAttribute('data-level') || '0') + '%');
+  });
+
   /* ---------- contact form (AJAX to contact.php) ---------- */
   var form = document.getElementById('contactForm');
   var note = document.getElementById('formNote');
   var submitBtn = document.getElementById('submitBtn');
+  function setNote(type, msg) {
+    if (!note) return;
+    note.className = 'form-note ' + (type || '');
+    note.textContent = msg || '';
+  }
+  function validEmail(value) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+  }
   if (form) {
     form.addEventListener('submit', function (ev) {
       ev.preventDefault();
-      note.className = 'form-note';
-      note.textContent = '';
-      if (!form.name.value.trim() || !form.email.value.trim() || !form.message.value.trim()) {
-        note.className = 'form-note err';
-        note.textContent = 'Please fill in every field.';
+      setNote('', '');
+      var name = form.name.value.trim();
+      var email = form.email.value.trim();
+      var message = form.message.value.trim();
+      var lastSent = parseInt(window.localStorage.getItem('hy-contact-last') || '0', 10);
+      if (lastSent && Date.now() - lastSent < 30000) {
+        setNote('err', 'Please wait a moment before sending another message.');
+        return;
+      }
+      if (!name || !email || !message) {
+        setNote('err', 'Please fill in every field.');
+        return;
+      }
+      if (!validEmail(email)) {
+        setNote('err', 'That email address looks invalid.');
+        return;
+      }
+      if (message.length < 20) {
+        setNote('err', 'Please add a little more detail so I can reply usefully.');
         return;
       }
       submitBtn.disabled = true;
       var original = submitBtn.textContent;
       submitBtn.textContent = 'Sending…';
+      setNote('busy', 'Sending securely…');
       fetch('contact.php', { method: 'POST', body: new FormData(form), headers: { 'X-Requested-With': 'fetch' } })
         .then(function (r) { return r.json().catch(function () { return { ok: false, error: 'Unexpected response.' }; }); })
         .then(function (data) {
           if (data.ok) {
-            note.className = 'form-note ok';
-            note.textContent = data.message || 'Message sent. I\'ll get back to you soon.';
+            setNote('ok', data.message || 'Message sent. I\'ll get back to you soon.');
+            window.localStorage.setItem('hy-contact-last', String(Date.now()));
             form.reset();
           } else {
-            note.className = 'form-note err';
-            note.textContent = data.error || 'Something went wrong. Email me directly instead.';
+            setNote('err', data.error || 'Something went wrong. Email me directly instead.');
           }
         })
         .catch(function () {
-          note.className = 'form-note err';
-          note.textContent = 'Network error. Email hamza.younas94@gmail.com instead.';
+          setNote('err', 'Network error. Email hamza.younas94@gmail.com instead.');
         })
         .finally(function () {
           submitBtn.disabled = false;

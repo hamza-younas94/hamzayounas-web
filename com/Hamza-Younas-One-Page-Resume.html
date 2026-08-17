@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Hamza Younas — One-Page Resume</title>
+<meta name="robots" content="noindex, follow" />
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,Helvetica,sans-serif;color:#172033;background:#fff;font-size:11px;line-height:1.42}
+.page{width:210mm;min-height:297mm;margin:0 auto;padding:13mm 14mm}
+.top{display:flex;justify-content:space-between;gap:18px;border-bottom:2px solid #0f766e;padding-bottom:10px;margin-bottom:10px}
+h1{font-size:28px;line-height:1.05;color:#0f172a}
+.role{font-size:13px;font-weight:700;color:#0f766e;margin-top:3px}
+.summary{margin-top:8px;max-width:124mm;color:#334155}
+.contact{text-align:right;font-size:10px;color:#334155}
+.contact a{color:#0f766e;text-decoration:none}
+.grid{display:grid;grid-template-columns:1.08fr .92fr;gap:12px}
+section{margin-bottom:10px}
+h2{font-size:11px;text-transform:uppercase;letter-spacing:0;color:#0f766e;border-bottom:1px solid #cbd5e1;padding-bottom:3px;margin-bottom:6px}
+.job{margin-bottom:8px}
+.jh{display:flex;justify-content:space-between;gap:8px;font-weight:700}
+.when{color:#0f766e;font-size:10px;white-space:nowrap}
+.co{font-weight:700;color:#334155;margin:1px 0 3px}
+ul{padding-left:14px}
+li{margin-bottom:2px;color:#334155}
+.chips{display:flex;flex-wrap:wrap;gap:4px}
+.chips span{border:1px solid #cbd5e1;border-radius:4px;padding:2px 4px;color:#334155;background:#f8fafc}
+.metric{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:8px 0}
+.metric div{border:1px solid #cbd5e1;border-radius:5px;padding:6px;background:#f8fafc}
+.metric b{display:block;color:#0f766e;font-size:13px}
+.cert{border:1px solid #cbd5e1;border-radius:5px;padding:7px;background:#f8fafc}
+.small{font-size:10px;color:#475569}
+@page{size:A4;margin:0}
+@media print{.page{margin:0;width:auto;min-height:auto}}
+</style>
+</head>
+<body>
+<main class="page">
+  <header class="top">
+    <div>
+      <h1>Hamza Younas</h1>
+      <div class="role">Senior DevOps Engineer · AWS Certified Solutions Architect</div>
+      <p class="summary">8+ years building AWS infrastructure, CI/CD automation, Kubernetes and observability for production teams. Proven record supporting 100K+ daily users, sustaining 99.9% uptime and reducing cloud costs by up to 30%.</p>
+    </div>
+    <div class="contact">
+      Karachi, Pakistan · Remote worldwide<br />
+      <a href="mailto:hamza.younas94@gmail.com">hamza.younas94@gmail.com</a><br />
+      <a href="tel:+923462115115">+92 346 211 5115</a><br />
+      <a href="https://hamzayounas.com">hamzayounas.com</a><br />
+      <a href="https://www.linkedin.com/in/hamza-younas-10bb0562">linkedin.com/in/hamza-younas-10bb0562</a><br />
+      <a href="https://github.com/hamza-younas94">github.com/hamza-younas94</a>
+    </div>
+  </header>
+
+  <section>
+    <h2>Proof Points</h2>
+    <div class="metric">
+      <div><b>100K+</b> daily users served</div>
+      <div><b>99.9%</b> production uptime</div>
+      <div><b>30%</b> cloud cost reduction</div>
+    </div>
+  </section>
+
+  <div class="grid">
+    <div>
+      <section>
+        <h2>Experience</h2>
+        <div class="job">
+          <div class="jh"><span>Senior DevOps Engineer</span><span class="when">Dec 2022 - Present</span></div>
+          <div class="co">DealCart.io · Remote</div>
+          <ul>
+            <li>Manage AWS infrastructure across ECS, RDS, S3, CloudFront, SQS and Route 53 for a fast-growing grocery platform.</li>
+            <li>Architect Docker-based microservices on ECS with autoscaling, load balancers and deployment controls.</li>
+            <li>Built CI/CD using Jenkins, CodePipeline, CodeBuild, CodeDeploy and Azure DevOps.</li>
+            <li>Reduced monthly cloud spend 30% through rightsizing, reserved capacity and automated scaling policies.</li>
+            <li>Led AWS to GCP migration work; ran Kubernetes clusters and centralised logging/security with Splunk.</li>
+          </ul>
+        </div>
+        <div class="job">
+          <div class="jh"><span>Senior DevOps Engineer</span><span class="when">Jul 2018 - Dec 2022</span></div>
+          <div class="co">OPTIMYSE</div>
+          <ul>
+            <li>Managed AWS EC2, RDS, ECS and S3 for enterprise applications serving 50K+ concurrent users.</li>
+            <li>Implemented Jenkins, GitLab Runner/CI and Azure DevOps pipelines; provisioned with Terraform and Ansible.</li>
+            <li>Reduced cloud costs 25% using rightsizing, spot instances and off-hours scheduling.</li>
+            <li>Ran API management with Kong and Konga across dev, integration and production environments.</li>
+          </ul>
+        </div>
+        <div class="job">
+          <div class="jh"><span>Assistant Manager, DevOps</span><span class="when">Oct 2014 - Jun 2018</span></div>
+          <div class="co">Nexus Corporation</div>
+          <ul>
+            <li>Scaled Linux servers, automated operations and delivered CI/CD with Jenkins and Docker.</li>
+            <li>Maintained Laravel/MySQL applications and managed DigitalOcean infrastructure.</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+
+    <div>
+      <section>
+        <h2>Core Stack</h2>
+        <div class="chips">
+          <span>AWS</span><span>ECS</span><span>EC2</span><span>RDS</span><span>S3</span><span>CloudFront</span><span>Route 53</span><span>SQS</span><span>SES</span><span>Docker</span><span>Kubernetes</span><span>Terraform</span><span>Ansible</span><span>Jenkins</span><span>GitLab CI</span><span>Azure DevOps</span><span>GitHub Actions</span><span>CodePipeline</span><span>CodeBuild</span><span>CodeDeploy</span><span>Prometheus</span><span>Grafana</span><span>CloudWatch</span><span>Splunk</span><span>Linux</span><span>GCP</span>
+        </div>
+      </section>
+      <section>
+        <h2>Selected Work Themes</h2>
+        <ul>
+          <li>High-traffic AWS platform operations for e-commerce and grocery systems.</li>
+          <li>Docker release pipelines across Jenkins, GitLab, GitHub Actions and AWS CodeSuite.</li>
+          <li>Infrastructure cost optimisation, autoscaling and observability improvements.</li>
+          <li>Independent products and internal tools including WhatsApp Mailbox, ExpenseTracker, Solar Monitor and CV Builder.</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Certification</h2>
+        <div class="cert">
+          <strong>AWS Certified Solutions Architect - Associate</strong><br />
+          <span class="small">Issued Apr 2025 · Expires Apr 2028<br />Credential 447ac4b2...83671</span>
+        </div>
+      </section>
+      <section>
+        <h2>Education</h2>
+        <strong>B.Sc. Computer Science</strong><br />
+        <span class="small">Dadabhoy Institute of Higher Education, 2016</span>
+      </section>
+    </div>
+  </div>
+</main>
+</body>
+</html>
