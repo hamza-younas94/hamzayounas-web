@@ -38,7 +38,7 @@
       'Hamza Younas\n' +
       '<b>Senior DevOps Engineer</b> · AWS Certified SA\n' +
       'infra: <b>AWS · Kubernetes · Terraform</b>\n' +
-      'status: <b>uptime 99.9% · 100K+ users</b>';
+      'status: <b>uptime 99.9% · 1M+ installs</b>';
     if (reduce) {
       cmdEl.textContent = cmd;
       outEl.innerHTML = out;

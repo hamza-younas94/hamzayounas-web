@@ -60,6 +60,7 @@ To rotate: `uapi Email passwd_pop email=noreply domain=hamzayounas.dev password=
 - 1200×630 OG/Twitter share image per site (`com/assets/img/og.png`, `dev/og.jpg`), generated from an HTML template via headless Chrome.
 - Full OG + Twitter Card + JSON-LD Person schema on both pages.
 - Focused `com/` landing pages: AWS DevOps Engineer in Karachi, CI/CD Automation, and Cloud Infrastructure.
+- DealCart scale metric uses conservative public-source-backed wording: `1M+ app installs supported`. Research note: `research/dealcart-traffic-2026-08-17.md`.
 - **Manual step:** add both sitemaps in Google Search Console.
 
 ## Regenerate the CV PDF
