@@ -35,8 +35,26 @@ dev/
 - All motion is CSS + IntersectionObserver. Honors `prefers-reduced-motion` (disables canvas, shows everything static).
 - Fully responsive; nav collapses to hamburger < 900px.
 
-## Contact form
-`contact.php` emails `hamza.younas94@gmail.com`. Update `$TO` at the top to change recipient. Requires PHP `mail()` (LiteSpeed/cPanel has it). Falls back to direct email link if sending fails.
+## Contact form (SMTP)
+`com/contact.php` sends via authenticated SMTP using vendored PHPMailer 6.9.3 (`com/lib/PHPMailer/src/`), with a `mail()` fallback.
+
+Credentials are **not** in this repo. They live on the server at `~/.hy-secrets/smtp.php`
+(above the web root, chmod 600), returning:
+```php
+<?php return [
+  'host' => 'premium909.web-hosting.com', 'port' => 465, 'secure' => 'ssl',
+  'user' => 'noreply@hamzayounas.dev', 'pass' => '…', 'from' => 'noreply@hamzayounas.dev',
+  'from_name' => 'hamzayounas.com', 'to' => 'hamza.younas94@gmail.com',
+];
+```
+The dedicated `noreply@hamzayounas.dev` mailbox was created with `uapi Email add_pop`.
+To rotate: `uapi Email passwd_pop email=noreply domain=hamzayounas.dev password=NEW`, then edit `~/.hy-secrets/smtp.php`.
+
+## SEO
+- `robots.txt` + `sitemap.xml` per site. Both domains are behind Cloudflare, which appends a managed content-signals block to robots.txt (allows search engines, blocks AI-training crawlers).
+- 1200×630 OG/Twitter share image per site (`com/assets/img/og.jpg`, `dev/og.jpg`), generated from an HTML template via headless Chrome.
+- Full OG + Twitter Card + JSON-LD Person schema on both pages.
+- **Manual step:** add both sitemaps in Google Search Console.
 
 ## Regenerate the CV PDF
 ```bash
